@@ -1,0 +1,121 @@
+Desafío de Datos: Optimización y Minería de Texto con Aspectos de Sostenibilidad
+
+1. Introducción
+
+¡Bienvenidos al Desafío de Datos!
+En este desafío, nos dedicaremos al análisis de artículos de noticias para descubrir qué características influyen en su popularidad en línea. Para ello, combinaremos métodos clásicos de optimización con técnicas de minería de texto. Al mismo tiempo, prestaremos atención al procesamiento de datos sostenible y utilizaremos métodos que ahorren recursos.
+
+Objetivos del Desafío:
+
+Adquirir comprensión sobre la ingeniería de características y los flujos de trabajo de aprendizaje automático.
+
+Comparar el rendimiento de los métodos clásicos de minería de texto con modelos modernos pre-entrenados.
+
+Desarrollar una conciencia sobre la sostenibilidad en el procesamiento de datos.
+
+Hacer predicciones y explicarlas en una presentación convincente.
+
+2. Tarea
+
+Recibiréis el conjunto de datos "Online News Popularity Data Set", que contiene información sobre artículos de noticias y su popularidad (Shares). Vuestra tarea consiste en llevar a cabo los siguientes pasos:
+
+Enlace:
+https://www.kaggle.com/datasets/thehapyone/uci-online-news-popularity-data-set
+
+Preparación de Datos:
+
+Análisis del conjunto de datos.
+
+Extracción de características de los textos y enlaces URL existentes (p. ej., Web Scraping).
+
+Ingeniería de Características:
+
+Extracción de características basadas en texto: sentimiento, polaridad, subjetividad.
+
+Identificación de otras características relevantes que puedan influir en los Shares.
+
+Modelado:
+
+Agrupamiento (Clustering) clásico basado en las características extraídas.
+
+Construcción de un modelo para predecir los Shares.
+
+Evaluación de la importancia de las características.
+
+Sostenibilidad:
+
+Discutir la influencia de métodos que ahorran recursos (p. ej., uso de modelos pre-entrenados vs. métodos simples de aprendizaje automático).
+
+Producto Mínimo Viable (MVP):
+
+Predicción de los Shares en los datos de prueba proporcionados.
+
+Presentación de los resultados y el modelo en forma de diapositivas o documentos.
+
+3. Entrega
+
+Cada grupo deberá entregar los siguientes elementos:
+
+Archivo de Predicciones: Un CSV con los Shares predichos para los datos de prueba.
+
+Presentación: Una breve descripción del enfoque, los resultados y la discusión sobre sostenibilidad.
+
+Notebook: El análisis completo en un Jupyter Notebook ejecutable.
+
+4. Criterios de Evaluación
+
+Precisión de las Predicciones: ¿Qué tan bien se ajusta el modelo a los datos de prueba?
+
+Sostenibilidad: Reflexión sobre la eficiencia de los recursos.
+
+Grado de Innovación: Creatividad en la ingeniería de características y la metodología.
+
+Presentación: Claridad y comprensibilidad de los resultados.
+
+5. Cronograma
+
+Fecha de Inicio: [xx.xx.xxxx]
+
+Fecha de Entrega: [xx.xx.xxxx]
+
+Entrega de Premios: [xx.xx.xxxx]
+
+6. Recursos Adicionales
+
+Introducción a JupyterLab: https://jupyter.org/
+
+Documentación de Scikit-Learn: https://scikit-learn.org
+
+Documentación de TextBlob: https://textblob.readthedocs.io
+
+Guía Paso a Paso
+
+A. Preparación de Datos
+
+Descarga el conjunto de datos e investígalo.
+
+Web Scraping: Extrae características adicionales de las URL (por ejemplo, contenido de texto, meta-tags).
+
+Limpieza de Datos: Verifica si hay valores faltantes o erróneos y limpia el conjunto de datos en consecuencia.
+
+B. Ingeniería de Características
+
+Utiliza bibliotecas como TextBlob o VADER para el análisis de sentimiento.
+
+Calcula características estadísticas como el recuento de palabras, la legibilidad, las palabras clave.
+
+Crea características propias que puedan derivarse de otros datos.
+
+C. Modelado
+
+Utiliza algoritmos clásicos de aprendizaje automático (ML) (p. ej., RandomForest, GradientBoosting) para predecir los Shares.
+
+Compara estos modelos con enfoques pre-entrenados (p. ej., modelos Transformer a través de API).
+
+D. Sostenibilidad
+
+Discutid el consumo de recursos de vuestros modelos.
+
+Comparad los enfoques clásicos y modernos en términos de consumo de energía y precisión.
+
+
