@@ -1,0 +1,228 @@
+Archivo: Online news popularity regression
+
+- Cambian el tipo de datos de las variables referidas a los días de la semana a booleano
+- Las variables que empiezan por n o num las cambian de float a int64
+- Elimina las variables url y timedelta
+----Conclusiones----
+- No existe un efecto entre el numero de imágenes y la popularidad del articulo 
+- Si existe diferencia entre los artículos que contienen o no videos. Siendo mas populares que los que no contienen videos.
+- La distribución de los datos alrededor del numero de palabras no es normal
+- Los artículos publicados los fines de semana tienen una popularidad media diferente de los artículos públicos entre semana.
+----------------------
+Modelos utilizados: Ridge y Lasso Regression
+
+Metricas Ridge:
+MAE: 3089,59
+
+Metricas Lasso:
+MAE: 3088,26
+
+Aplicando transformaciones:
+
+Estandarización:
+Métricas Ridge:
+MAE: 3089,67
+
+Min-Max:
+Métricas Ridge:
+MAE: 3087,78
+
+Robusta:
+Métricas Ridge:
+MAE: 3089,70
+
+AL agregar términos polinomiales el MAE aumenta bastante, por lo que se piensa que el modelo presenta overfitting.
+
+Se tunearon los hiperparametros del modelo, regresión de ridge quedando que el que mas logra minimizar el MAE es el que tiene max_iter=1000 y alpha=100 y el MAE = 3828,29
+
+
+Archivo: Exploratory Analysis for Online News Popularity v2 - A classification problem
+
+El proceso seguido por el autor fue:
+-------- Limpieza de datos: Remover ruido------------
+
+- Se removieron las variables url y timedelta
+- Se elimino de la columna n_tokens_content los que fueran iguales a 0.
+- Se elimino la fila referida a cuando n_non_stop_words es igual a 1042, un claro outlier.
+- Se crea la variable shares_label, considerando dos posibles escenarios: popular e impopular.
+- Se encontró que popular hay = 18911 e impopular = 19551
+
+---------Transformación de datos: Transformar usando logaritmo---------
+
+- Shares no tiene una distribución normal, esto lo muestra peakedness, la kurtosis positiva y no se sigue a una linea diagonal.
+- Se utiliza transformación logarítmica y ya logra ajustarse a una distribución normal.
+- Se aplica transformación logaritimica o normalizacion a cada una de las variables dependiendo el caso.   
+- Se aplica escala robusta para todas las columnas menos las referidas a shares 
+
+-------- Clustering: Crear grupos de artículos similares -----------
+- Se aplica reducción de la dimension. Se compara PCA con t-SNE
+- Se aplica k-means. Se escoge n=5
+- Estas nuevas características se agregan al dataset
+
+--------- Selección de características y evaluación
+Aquí se aplican ciertas medidas para determinar cuales son las mejores características a escoger (incluyendo los clusters) y las que queden serán usadas para el entrenamiento del modelo. Los criterios usados fueron:
+* Mutual Information
+* F-Score
+* Recursive Feature Elimination
+* PCA (Principal Component Analysis)
+* KPCA (Kernel PCA) - It was later removed, wasn't improving the model, time and memory consuming 
+* MDS (Manifold Sculpting) - It was later removed, wasn't improving the model, time and memory consuming 
+* T-SNE - It was later removed, wasn't improving the model, time and memory consuming 
+
+- ML Clasificación
+- Resúmenes y conclusiones.
+
+
+Archivo: blending boosted trees to predict shares
+
+- Elimino las variables url y timedelta
+
+Modelos Nivel 1
+- XGBoost
+- LightGBM
+- CatBoost
+
+Resultados:
+           xgb	            lgbm	    cb
+0	2866.130859	2765.119185	2797.481835
+1	2285.181152	2344.921781	1970.955591
+2	1681.987427	1705.944817	1741.055873
+3	6342.706055	8910.599382	8150.739552
+4	1813.295288	1896.233754	1651.133938
+
+Modelos Nivel 2
+- Regresión lineal con la variable creada con los tres boost
+Resultados (train):
+
+MSE = 15425,284316577872
+
+Resultados (test):
+
+MSE = 10266,087941729065
+MAE = 3030,4517936629086
+
+Archivo: ais-projekt-2022-m-c-und-n-s
+Archivo: ais-projekt-online-news-popularity-js
+Archivo: ais-projekt-online-news-popularity-js-js
+
+Archivo: Prediction-of-online-news-popularity
+
+- Elimina las variables url y timedelta
+- Se elimino de la columna n_tokens_content los que fueran iguales a 0.
+- Elimina las variables n_non_stop_unique_tokens, n_non_stop_words, kw_avg_min porque presentan correlaciones demasiado altas.
+- Se crea una variable llamada popularidad, un articulo se considera popular si fue 1400 (la mediana) veces compartido y si fue menor a esta cantidad es impopular. 
+- Se realizan distintos gráficos de barra para observar si existen grandes diferencias entre los artículos populares y los que no. 
+- Se comprueba la cantidad de valores atípicos por medio del método de los cuartiles.
+- Crea dos df, uno con los datos numéricos y otro con los categóricos
+- Aplican box-cox para el primer df. Para tratar los outliers se usa el mismo criterio de los cuartiles. Eliminando los que están arriba del 0.99 y debajo del 0.01 y los elimina.
+El df final queda con dimension: (39518, 56)
+- Se tenían un total de 1055 NA, se eliminaron. Se hizo algo con la variable popularidad. y queda como resultado que el df final queda con dimension (37408, 57).
+
+- Para la clasificación:
+
+1) Se usaron modelos base como AdaBoost Classifier, Logistic Regression y Random Forest. Cada modelo se entreno con tres variantes:
+	- 299 muestras
+	- 2992 muestras.
+	- 29926 muestras.
+Teniendo entonces tres modelos por cada técnica.
+Nota: A cada modelo se le calculo la accuracy, el F1 y AUC.
+
+2) Se usaron tres modelos bases como GaussianNB, SVC y KNN.
+Cada modelo se entreno con tres variantes:
+	- 299 muestras
+	- 2992 muestras.
+	- 29926 muestras.
+Teniendo entonces tres modelos por cada técnica.
+Nota: A cada modelo se le calculo la accuracy, el F1 y AUC.
+
+3)  Se usaron modelos base como SGDClassifier, BaggingClassifier y DecisionTreeClassifier.
+Cada modelo se entreno con tres variantes:
+	- 299 muestras
+	- 2992 muestras.
+	- 29926 muestras.
+Teniendo entonces tres modelos por cada técnica.
+Nota: A cada modelo se le calculo la accuracy, el F1 y AUC.
+
+Luego se usa un modelo LightGBM. Teniendo una accuracy de 0,62 aproximadamente.
+
+- Selección de características
+
+- Se usa Backward Elimination y se escoge el modelo RandomForest para clasificar.
+Accuracy of Random forest train : 1.0
+Accuracy of Random forest test: 0.6094627105052125
+AUC of Random forest train : 0.9999999999999999
+AUC of Random forest test : 0.6446364958957014
+
+La matriz de confusion da:
+
+[2764, 2512,
+ 1871, 4076]
+
+- Tuneo de los hiperparametros del modelo con randomsearch.
+
+Los valores de los hiperparametros que dan mejores resultados son:
+{'criterion': 'entropy', 'max_depth': 6, 'max_features': 12, 'min_samples_leaf': 17, 'min_samples_split': 15, 'n_estimators': 24}
+
+Ocasionando que las medidas de rendimiento den los siguientes resultados:
+Accuracy of Random forest train : 0.6329196104640061
+Accuracy of random forest test : 0.619976833288782
+AUC of random forest train : 0.6827347068932483
+AUC of random forest test : 0.65313786119058
+
+Archivo: news_virality-prediction
+
+Se eliminaron las variables url, timedelta y shares
+
+En este caso se escrapearon los artículos de la BBC para que el dataset UCI quede solo para el entrenamiento.
+
+Antes de ponerse a extraer la información para la creación de nuevas variables. Se utilizo PCA con n=12, se estandarizaron las variables. Luego se uso XGBoost para encontrar la importancia absoluta de cada característica. Esto se hace para que se pueda minimizar nuestro esfuerzo de hacer las características mientras extraemos y convertimos los nuevos artículos al formato del ds. Una vez hecho esto se determino que solo 20 resultaron ser importantes.  Quedando la siguientes:
+*   n_tokens_title : Number of words in the title
+*   n_tokens_content: Number of words in the content 
+*   n_unique_tokens : Rate of unique words in the content ( #unique words / #words )
+*   average_token_length : Average length of the words in the content 
+*   n_non_stop_unique_tokens : Rate of unique non-stop words in the content
+*   num_hrefs : Number of links
+*   global_subjectivity : subjectivity of article content
+*   avg_positive_polarity : Average polarity of positive words
+*   global_sentiment_polarity : Text sentiment polarity
+*   kw_max_avg : DNC
+*   kw_avg_avg : DNC
+*   kw_avg_max : DNC
+*   kw_max_min : DNC
+*   lda_03 : DNC
+*   self_reference_min_shares : DNC
+*   lda_00 : DNC
+*   lda_01 : DNC
+*   lda_04 : DNC
+*   kw_avg_min : DNC
+*   lda_02 : DNC
+
+Se agregaron 9 variables.
+
+Se entreno un XGBoost con un {'max_depth': 5} y métricas iguales a: 
+RMSE error with gbtree booster is 11431.556668640484 
+RMSE error with gblinear booster is 10973.181940995893
+
+Por medio de una regla se llega a que el booster = gblinear
+
+Se entreno un RandomForestRegressor igual con un {'max_depth': 5} y métricas iguales a:
+RMSE error with Random Forest Regressor is 10973.181940995893 :
+
+Se entrena una regresión de Ridge con una regularización L2 y construido en CV
+RMSE error with Linear Regression via RidgeCV is 10952.058107374436 
+
+De los tres este es que menor RMSE tiene.
+
+El mejor modelo es entonces RidgeCV.
+
+
+
+
+
+
+
+
+
+
+
+

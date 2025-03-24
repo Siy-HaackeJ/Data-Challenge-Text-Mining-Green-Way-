@@ -1,0 +1,138 @@
+1. Complejidad y Estructura del Contenido
+n_tokens_title: Número de palabras en el título.
+
+n_tokens_content: Número de palabras en el contenido.
+
+n_unique_tokens: Tasa de palabras únicas en el contenido.
+
+n_non_stop_words: Tasa de palabras que no son "stop words" en el contenido.
+
+n_non_stop_unique_tokens: Tasa de palabras únicas que no son "stop words" en el contenido.
+
+average_token_length: Longitud promedio de las palabras en el contenido.
+
+num_keywords: Número de palabras clave en los metadatos.
+
+2. Multimedia y Referencias Externas
+num_hrefs: Número de enlaces.
+
+num_self_hrefs: Número de enlaces a otros artículos publicados por Mashable.
+
+num_imgs: Número de imágenes.
+
+num_videos: Número de videos.
+
+3. Desempeño de las Palabras Clave
+kw_min_min: Peor palabra clave (mínimo de shares).
+
+kw_max_min: Peor palabra clave (máximo de shares).
+
+kw_avg_min: Peor palabra clave (promedio de shares).
+
+kw_min_max: Mejor palabra clave (mínimo de shares).
+
+kw_max_max: Mejor palabra clave (máximo de shares).
+
+kw_avg_max: Mejor palabra clave (promedio de shares).
+
+kw_min_avg: Promedio de palabras clave (mínimo de shares).
+
+kw_max_avg: Promedio de palabras clave (máximo de shares).
+
+kw_avg_avg: Promedio de palabras clave (promedio de shares).
+
+4. Métricas de Redes Sociales y Compartición
+self_reference_min_shares: Mínimo de shares de artículos referenciados en Mashable.
+
+self_reference_max_shares: Máximo de shares de artículos referenciados en Mashable.
+
+self_reference_avg_sharess: Promedio de shares de artículos referenciados en Mashable.
+
+shares: Número de shares (objetivo).
+
+5. Contexto Temporal y de Publicación
+timedelta: Días entre la publicación del artículo y la adquisición del conjunto de datos.
+
+weekday_is_monday a weekday_is_sunday: Día de la semana en que se publicó el artículo.
+
+is_weekend: Si el artículo fue publicado en fin de semana.
+
+6. Sentimiento y Subjetividad del Contenido
+global_subjectivity: Subjetividad del texto.
+
+global_sentiment_polarity: Polaridad del sentimiento del texto.
+
+global_rate_positive_words: Tasa de palabras positivas en el contenido.
+
+global_rate_negative_words: Tasa de palabras negativas en el contenido.
+
+rate_positive_words: Tasa de palabras positivas entre tokens no neutrales.
+
+rate_negative_words: Tasa de palabras negativas entre tokens no neutrales.
+
+avg_positive_polarity: Polaridad promedio de palabras positivas.
+
+min_positive_polarity: Polaridad mínima de palabras positivas.
+
+max_positive_polarity: Polaridad máxima de palabras positivas.
+
+avg_negative_polarity: Polaridad promedio de palabras negativas.
+
+min_negative_polarity: Polaridad mínima de palabras negativas.
+
+max_negative_polarity: Polaridad máxima de palabras negativas.
+
+title_subjectivity: Subjetividad del título.
+
+title_sentiment_polarity: Polaridad del sentimiento del título.
+
+abs_title_subjectivity: Nivel absoluto de subjetividad del título.
+
+abs_title_sentiment_polarity: Nivel absoluto de polaridad del título.
+
+7. Tema y Categoría del Contenido
+data_channel_is_lifestyle: ¿El canal de datos es "Lifestyle"?
+
+data_channel_is_entertainment: ¿El canal de datos es "Entretenimiento"?
+
+data_channel_is_bus: ¿El canal de datos es "Negocios"?
+
+data_channel_is_socmed: ¿El canal de datos es "Redes Sociales"?
+
+data_channel_is_tech: ¿El canal de datos es "Tecnología"?
+
+data_channel_is_world: ¿El canal de datos es "Mundo"?
+
+LDA_00 a LDA_04: Cercanía a los temas LDA 0 a 4.
+
+8. Metadatos y Referencias Externas
+url: URL del artículo.
+
+Nuevas Variables y su Clasificación por Dimensión
+NER Counts (Frecuencia de Entidades Nombradas):
+
+ner_counts: Frecuencia de entidades nombradas (personas, organizaciones, ubicaciones, fechas).
+
+neg, neu, pos: Tono emocional hacia las entidades nombradas (negativo, neutral, positivo).
+
+compound: Puntuación de sentimiento compuesto hacia las entidades nombradas.
+
+Dimensión Propuesta: "Entidades Nombradas y Sentimiento" (Nueva dimensión).
+
+Readability Scores (Métricas de Legibilidad):
+
+flesch_kincaid: Nivel de grado de Flesch-Kincaid.
+
+gunning_fog: Índice de Gunning Fog.
+
+smog_index: Índice SMOG.
+
+Dimensión Propuesta: "Legibilidad del Texto" (Nueva dimensión).
+
+Diversidad Léxica:
+
+TTR (Type-Token Ratio): Proporción de palabras únicas en el texto.
+
+Hapax_Ratio (Hapax Legomena Ratio): Proporción de palabras que aparecen solo una vez.
+
+Dimensión Propuesta: "Diversidad Léxica" (Nueva dimensión).
